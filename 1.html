@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Audio Player</title>
+    <style>
+        /* Your existing CSS styles for the audio player can be placed here */
+    </style>
+</head>
+<body>
+
+        <audio id="audioPlayer" controls>
+            <!-- Default source, replace with your default audio file -->
+            <source src="song.mp3" type="audio/mp3">
+        </audio>
+    <script>
+        // Function to change the audio source based on genre
+        function changeAudioSource(genre) {
+            var audioPlayer = document.getElementById('audioPlayer');
+            var source;
+
+            // Choose the appropriate audio source based on the selected genre
+            switch (genre) {
+                case 'horror':
+                    source = 'film_horror.mp3';
+                    break;
+                // Add more cases for other genres as needed
+                // case 'action':
+                //     source = 'film_action.mp3';
+                //     break;
+                // ...
+
+                default:
+                    // Use a default source for unknown genres
+                    source = 'default_audio.mp3';
+            }
+
+            // Update the audio source
+            audioPlayer.src = source;
+            audioPlayer.load(); // Optional: force the audio element to reload the new source
+        }
+
+        // Example: Call the function when the genre changes (replace with your actual event trigger)
+        var selectedGenre = 'horror'; // Replace with the actual selected genre
+        changeAudioSource(selectedGenre);
+    </script>
+
+</body>
+</html>

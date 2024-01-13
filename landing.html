@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script Generator</title>
+    <style>
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        #landing-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #script-box {
+            width: 80%;
+            height: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        #download-options {
+            margin: 20px 0;
+        }
+
+        .download-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #generate-button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="landing-container">
+        <h1>Story Generator</h1>
+        <textarea id="script-box" placeholder="Your generated script will appear here..." readonly></textarea>
+        
+        <div id="download-options">
+            <a href="#" class="download-button" onclick="downloadScript(true)">Download Script</a>
+            <a href="#" class="download-button" onclick="downloadScript(false)">Download Script with Images</a>
+        </div>
+
+        <button id="generate-button" onclick="generateScript()">Generate Another Script</button>
+        
+    </div>
+
+    <script>
+        function generateScript() {
+            // Your script generation logic goes here
+            // For simplicity, let's just generate a random number
+            const randomScript = Math.floor(Math.random() * 1000);
+            document.getElementById('script-box').value = `Generated Script: ${randomScript}`;
+        }
+
+        function downloadScript(withImages) {
+            const scriptContent = document.getElementById('script-box').value;
+            const filename = withImages ? 'script_with_images.txt' : 'script_without_images.txt';
+            const blob = new Blob([scriptContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+
+            document.body.appendChild(link);
+            link.click();
+
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
